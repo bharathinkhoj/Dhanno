@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BarChart3, Wallet, FolderOpen } from 'lucide-react';
-import FinGenieLogo from './FinGenieLogo';
+import DhannoLogo from './DhannoLogo';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
@@ -17,7 +17,7 @@ const Navigation: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between">
           <Link to="/dashboard" className="py-4">
-            <FinGenieLogo size="md" />
+            <DhannoLogo size="md" />
           </Link>
             <div className="flex space-x-8">
             {navItems.map((item) => {

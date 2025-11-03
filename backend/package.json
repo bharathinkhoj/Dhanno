@@ -1,7 +1,7 @@
 {
-  "name": "fingenie-backend",
+  "name": "dhanno-backend",
   "version": "1.0.0",
-  "description": "Backend API for FinGenie - AI-powered financial assistant",
+  "description": "Backend API for Dhanno - Smart financial management platform",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",

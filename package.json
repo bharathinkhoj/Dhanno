@@ -1,7 +1,7 @@
 {
-  "name": "fingenie",
+  "name": "dhanno",
   "version": "1.0.0",
-  "description": "FinGenie - AI-powered personal finance assistant with smart categorization",
+  "description": "Dhanno - Smart financial management with AI-powered insights",
   "main": "index.js",
   "scripts": {
     "dev:backend": "cd backend && npm run dev",
