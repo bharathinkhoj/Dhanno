@@ -1,0 +1,20 @@
+{
+  "name": "finance-manager",
+  "version": "1.0.0",
+  "description": "Personal finance management app with LLM-powered categorization",
+  "main": "index.js",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "keywords": ["finance", "llm", "ollama", "transactions"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

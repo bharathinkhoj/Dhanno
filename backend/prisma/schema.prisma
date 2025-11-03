@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String            @id @default(cuid())
+  email        String            @unique
+  name         String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  password     String
+  assets       Asset[]
+  categories   Category[]
+  patterns     CategoryPattern[]
+  transactions Transaction[]
+}
+
+model Category {
+  id           String            @id @default(cuid())
+  name         String
+  color        String
+  icon         String?
+  type         String
+  userId       String?
+  isDefault    Boolean           @default(false)
+  createdAt    DateTime          @default(now())
+  parentId     String?
+  updatedAt    DateTime          @updatedAt
+  parent       Category?         @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children     Category[]        @relation("CategoryHierarchy")
+  user         User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  patterns     CategoryPattern[]
+  transactions Transaction[]
+
+  @@index([userId])
+  @@index([parentId])
+}
+
+model Transaction {
+  id             String    @id @default(cuid())
+  date           DateTime
+  description    String
+  amount         Float
+  merchant       String?
+  type           String
+  categoryId     String?
+  userId         String
+  notes          String?
+  tags           String[]
+  attachments    String[]
+  isRecurring    Boolean   @default(false)
+  llmCategorized Boolean   @default(false)
+  llmConfidence  Float?
+  source         String?   // Bank/Account source like "SBI Savings", "HDFC Credit Card"
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  category       Category? @relation(fields: [categoryId], references: [id])
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([date])
+  @@index([categoryId])
+}
+
+model CategoryPattern {
+  id               String   @id @default(cuid())
+  userId           String
+  description      String
+  merchant         String?
+  categoryId       String
+  confidence       Float    @default(1.0)
+  isUserCorrection Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  category         Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([description])
+  @@index([merchant])
+}
+
+model Asset {
+  id            String    @id @default(cuid())
+  userId        String
+  name          String
+  category      String
+  subCategory   String?
+  currentValue  Float
+  purchaseValue Float?
+  purchaseDate  DateTime?
+  quantity      Float?
+  description   String?
+  location      String?
+  isActive      Boolean   @default(true)
+  lastUpdated   DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([category])
+}
