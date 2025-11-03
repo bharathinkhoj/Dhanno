@@ -1,4 +1,4 @@
-# Finance Manager 💰🇮🇳
+# Dhanno 💰🇮🇳
 
 A modern personal finance management web application designed for Indian users, powered by AI for intelligent transaction categorization. Supports major Indian banks and uses INR currency formatting.
 
@@ -13,6 +13,7 @@ A modern personal finance management web application designed for Indian users, 
 - **🎨 Modern UI**: Beautiful dark-themed interface with Tailwind CSS
 - **🔒 Secure**: JWT authentication with encrypted passwords
 - **🚀 Fast**: Built with React, TypeScript, and optimized APIs
+- **💼 Asset Management**: Track investments, stocks, mutual funds with automatic categorization
 
 ## 🛠️ Tech Stack
 
@@ -40,15 +41,32 @@ Before you begin, ensure you have the following installed:
 - **PostgreSQL** (v14 or higher)
 - **Ollama** - [Install from ollama.ai](https://ollama.ai)
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### 1. Clone the Repository
 
 ```bash
-cd /Users/udai/Documents/finance-manager
+git clone https://github.com/yourusername/dhanno.git
+cd dhanno
 ```
 
-### 2. Install Ollama and Download a Model
+### 2. Install Dependencies
+
+```bash
+# Install root dependencies
+npm install
+
+# Install backend dependencies
+cd backend && npm install
+
+# Install frontend dependencies
+cd ../frontend && npm install
+
+# Return to root
+cd ..
+```
+
+### 3. Install Ollama and Download a Model
 
 ```bash
 # Install Ollama from https://ollama.ai
@@ -60,19 +78,19 @@ ollama pull llama3.2:3b
 ollama list
 ```
 
-### 3. Set Up the Database
+### 4. Set Up the Database
 
 ```bash
 # Create a PostgreSQL database
-createdb finance_manager
+createdb dhanno
 
 # Or using psql
 psql -U postgres
-CREATE DATABASE finance_manager;
+CREATE DATABASE dhanno;
 \q
 ```
 
-### 4. Configure Backend
+### 5. Configure Backend
 
 ```bash
 cd backend
@@ -84,7 +102,7 @@ npm install
 cp .env.example .env
 
 # Edit .env with your settings:
-# DATABASE_URL="postgresql://username:password@localhost:5432/finance_manager?schema=public"
+# DATABASE_URL="postgresql://username:password@localhost:5432/dhanno?schema=public"
 # JWT_SECRET="your-secret-key-change-in-production"
 # OLLAMA_BASE_URL="http://localhost:11434"
 # OLLAMA_MODEL="llama3.2:3b"
@@ -94,7 +112,7 @@ npm run prisma:generate
 npm run prisma:migrate
 ```
 
-### 5. Configure Frontend
+### 6. Configure Frontend
 
 ```bash
 cd ../frontend
@@ -271,14 +289,42 @@ For production, host Ollama on a separate server:
 OLLAMA_BASE_URL="http://your-ollama-server:11434"
 ```
 
+## 📊 Repository Statistics
+
+- **Repository Size**: ~1MB (after cleanup)
+- **Languages**: TypeScript (70%), JavaScript (15%), CSS (10%), Other (5%)
+- **Total Files**: ~150+ source files
+- **Dependencies**: Modern, lightweight stack
+
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to:
-- Report bugs
-- Suggest features
-- Submit pull requests
+We welcome contributions! Please follow these steps:
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Commit your changes**: `git commit -m 'Add amazing feature'`
+4. **Push to branch**: `git push origin feature/amazing-feature`
+5. **Open a Pull Request**
+
+### Development Guidelines
+- Follow TypeScript/ESLint conventions
+- Write descriptive commit messages
+- Add tests for new features
+- Update documentation as needed
+
+## 🐛 Issues & Support
+
+- **Bug Reports**: [Open an issue](https://github.com/yourusername/dhanno/issues)
+- **Feature Requests**: [Start a discussion](https://github.com/yourusername/dhanno/discussions)
+- **Questions**: Check existing issues or create a new one
+
+## ⭐ Show Your Support
+
+If this project helped you, please give it a ⭐ on GitHub!
 
 ## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 MIT License - feel free to use this project for personal or commercial purposes.
 
