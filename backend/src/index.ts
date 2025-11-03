@@ -37,5 +37,5 @@ app.get('/health', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📊 Finance Manager API ready`);
+  console.log(`🧞 FinGenie API ready - Your AI-powered financial assistant`);
 });

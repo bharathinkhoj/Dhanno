@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { authApi } from '../api/api';
 import { useNavigate } from 'react-router-dom';
+import FinGenieLogo from '../components/FinGenieLogo';
 
 export const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -36,9 +37,15 @@ export const Login: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-900">
       <div className="card w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center mb-6 text-white">
-          {isLogin ? 'Login' : 'Sign Up'} to Finance Manager
+        <div className="flex justify-center mb-8">
+          <FinGenieLogo size="lg" />
+        </div>
+        <h2 className="text-2xl font-bold text-center mb-6 text-white">
+          {isLogin ? 'Welcome Back' : 'Join FinGenie'}
         </h2>
+        <p className="text-center text-gray-300 mb-6">
+          {isLogin ? 'Sign in to your account' : 'Create your account and start managing your finances'}
+        </p>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (

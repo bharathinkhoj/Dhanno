@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BarChart3, Wallet, FolderOpen } from 'lucide-react';
+import FinGenieLogo from './FinGenieLogo';
 
 const Navigation: React.FC = () => {
   const location = useLocation();
@@ -14,26 +15,31 @@ const Navigation: React.FC = () => {
   return (
     <nav className="bg-slate-800 border-b border-slate-700 mb-6">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex space-x-8">
-          {navItems.map((item) => {
-            const IconComponent = item.icon;
-            const isActive = location.pathname === item.path;
-            
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`flex items-center space-x-2 px-3 py-4 border-b-2 text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'border-blue-500 text-blue-400'
-                    : 'border-transparent text-gray-300 hover:text-white hover:border-gray-300'
-                }`}
-              >
-                <IconComponent className="h-4 w-4" />
-                <span>{item.name}</span>
-              </Link>
-            );
-          })}
+        <div className="flex items-center justify-between">
+          <Link to="/dashboard" className="py-4">
+            <FinGenieLogo size="md" />
+          </Link>
+            <div className="flex space-x-8">
+            {navItems.map((item) => {
+              const IconComponent = item.icon;
+              const isActive = location.pathname === item.path;
+              
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center space-x-2 px-3 py-4 border-b-2 text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'border-blue-500 text-blue-400'
+                      : 'border-transparent text-gray-300 hover:text-white hover:border-gray-300'
+                  }`}
+                >
+                  <IconComponent className="h-4 w-4" />
+                  <span>{item.name}</span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </nav>

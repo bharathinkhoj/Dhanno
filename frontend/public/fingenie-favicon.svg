@@ -1,0 +1,36 @@
+<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Genie lamp base -->
+  <path
+    d="M10 30 C10 25, 15 20, 20 20 C25 20, 30 25, 30 30 Z"
+    fill="url(#lampGradient)"
+    stroke="#3B82F6"
+    stroke-width="1"
+  />
+  
+  <!-- Genie lamp spout -->
+  <path
+    d="M20 20 C18 18, 16 16, 18 14 C20 12, 22 14, 22 16"
+    fill="url(#spoutGradient)"
+    stroke="#3B82F6"
+    stroke-width="1"
+  />
+  
+  <!-- Magic sparkles -->
+  <circle cx="25" cy="15" r="1.5" fill="#F59E0B" opacity="0.8" />
+  <circle cx="28" cy="12" r="1" fill="#10B981" opacity="0.6" />
+  <circle cx="23" cy="10" r="0.8" fill="#EF4444" opacity="0.7" />
+  
+  <!-- Currency symbol -->
+  <text x="20" y="27" text-anchor="middle" fill="#DBEAFE" font-size="8" font-weight="bold">₹</text>
+  
+  <defs>
+    <linearGradient id="lampGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1E40AF" />
+    </linearGradient>
+    <linearGradient id="spoutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+  </defs>
+</svg>

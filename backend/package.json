@@ -1,7 +1,7 @@
 {
-  "name": "finance-manager-backend",
+  "name": "fingenie-backend",
   "version": "1.0.0",
-  "description": "Backend API for finance manager",
+  "description": "Backend API for FinGenie - AI-powered financial assistant",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
