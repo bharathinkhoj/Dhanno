@@ -46,7 +46,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/dhanno.git
+git clone https://github.com/bharathinkhoj/dhanno.git
 cd dhanno
 ```
 
@@ -314,8 +314,8 @@ We welcome contributions! Please follow these steps:
 
 ## 🐛 Issues & Support
 
-- **Bug Reports**: [Open an issue](https://github.com/yourusername/dhanno/issues)
-- **Feature Requests**: [Start a discussion](https://github.com/yourusername/dhanno/discussions)
+- **Bug Reports**: [Open an issue](https://github.com/bharathinkhoj/dhanno/issues)
+- **Feature Requests**: [Start a discussion](https://github.com/bharathinkhoj/dhanno/discussions)
 - **Questions**: Check existing issues or create a new one
 
 ## ⭐ Show Your Support
