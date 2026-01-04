@@ -42,11 +42,13 @@ setup_env() {
         DB_PASSWORD=$(generate_password)
         JWT_SECRET=$(generate_jwt_secret)
         
-        # Update .env file with generated values
-        sed -i "s/your_very_secure_database_password/$DB_PASSWORD/" .env
-        sed -i "s/your_jwt_secret_key_at_least_32_characters_long/$JWT_SECRET/" .env
+        # Update .env file with generated values using different delimiter
+        sed -i "s|your_very_secure_database_password|$DB_PASSWORD|" .env
+        sed -i "s|your_jwt_secret_key_at_least_32_characters_long|$JWT_SECRET|" .env
         
         echo "✅ Environment file created with secure passwords"
+        echo "📝 Database password: $DB_PASSWORD"
+        echo "🔑 JWT Secret: ${JWT_SECRET:0:20}..."
     else
         echo "✅ Environment file already exists"
     fi
