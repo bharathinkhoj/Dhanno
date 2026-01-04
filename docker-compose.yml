@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  database:
+    image: postgres:15-alpine
+    container_name: dhanno-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dhanno
+      POSTGRES_USER: dhanno_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-your_secure_password_here}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    networks:
+      - dhanno-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dhanno_user -d dhanno"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dhanno-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URL: postgresql://dhanno_user:${DB_PASSWORD:-your_secure_password_here}@database:5432/dhanno
+      JWT_SECRET: ${JWT_SECRET:-your_jwt_secret_here}
+      OLLAMA_URL: ${OLLAMA_URL:-http://host.docker.internal:11434}
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "3001:3001"
+    networks:
+      - dhanno-network
+    volumes:
+      - ./backend/uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dhanno-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - dhanno-network
+
+  # Ollama (Optional - for AI features)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: dhanno-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - dhanno-network
+    # Uncomment if you have GPU support on Raspberry Pi
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+volumes:
+  postgres_data:
+  ollama_data:
+
+networks:
+  dhanno-network:
+    driver: bridge
